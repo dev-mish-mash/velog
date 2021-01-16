@@ -1,0 +1,22 @@
+## One dispatch, one render
+* **리덕스는 모든 dispatch에 대해 모든 subscriber를 업데이트함**
+* 상태를 각자 다른 reducer로 분리하는것과는 상관없음
+* 하나의 리덕스 앱은 결과적으로 하나의 root reducer function만을 가지기 때문임
+
+> **Redux app really only has one reducer function**: the "root reducer" function that you will pass to createStore later on. That one root reducer function is responsible for handling all of the actions that are dispatched, and calculating what the **entire new state** result should be every time. 
+ _source: https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers#writing-reducers_
+ 
+ * 또한, 여러 번의 dispatch가 실행될 경우 virtual dom render도 그 횟수만큼 실행
+ 
+## dispatch 최적화에 대해
+ * 한 dispatch에 여러 액션이 동시에 수행되도록 batching 하기
+ * 다만, 간단한 CRUD 앱의 경우 굳이 이런 공수를 들여 최적화할 필요는 없음
+ * 실시간으로 많은 양의 데이터를 주고받는 앱의 경우에 필요함
+ * e.g. 코인 거래소(실시간 호가 렌더), 채팅앱(실시간 동시다발적 채팅) 
+ 
+## reference
+ 
+ https://blog.isquaredsoftware.com/2017/01/idiomatic-redux-thoughts-on-thunks-sagas-abstraction-and-reusability/
+ 
+ 
+ 
